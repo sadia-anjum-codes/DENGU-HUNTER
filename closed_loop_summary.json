@@ -1,0 +1,10 @@
+{
+    "feature": "Closed-Loop Verification",
+    "prototype_status": "PREPARATION_COMPLETE",
+    "locations_registered": 15,
+    "before_images_referenced": 15,
+    "after_images_received": 0,
+    "verified_locations": 0,
+    "pending_verification": 15,
+    "real_world_intervention": false
+}
