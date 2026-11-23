@@ -130,6 +130,11 @@ The repository is organized around the following components:
 
 ```text
 
+## 7. Project Structure
+
+The repository is organized around the following components:
+
+```text
 DENGU-HUNTER/
 ├── backend/
 │   ├── main.py
@@ -151,17 +156,28 @@ DENGU-HUNTER/
 │   └── data/
 │       └── README.md
 ├── results/
+│   ├── Folder
 │   ├── association_results.csv
 │   ├── closed_loop_summary.json
 │   ├── image_inspection_summary.csv
 │   └── intervention_register.csv
 ├── docs/
 │   └── README.md
+├── .env
+├── .env.example
+├── .gitignore
+├── DENGU_HUNTER_AI_GitHub_Clean.ipynb
+├── DENGU_HUNTER_GITHUB_FINAL.ipynb
+├── main.py
+├── requirements.txt
+├── setup_local.py
 └── README.md
-  
 ```
 
-This structure represents the intended organization. Verify the actual GitHub repository paths after the backend upload.
+Large datasets are hosted separately on Google Drive. The root-level Python files are retained alongside the backend directory.
+  
+```
+The repository contains the backend, frontend, model archive, results, and documentation. Large datasets are hosted separately on Google Drive.
 
 ## 8. Local Installation and Setup
 
