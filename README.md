@@ -195,7 +195,7 @@ Configure any required environment variables using `.env.example`.
 ### Step 3: Start the Backend
 
 ```powershell
-python -m uvicorn app.main:app --host 127.0.0.1 --port 8003 --reload
+python -m uvicorn main:app --host 127.0.0.1 --port 8003 --reload
 ```
 
 API documentation:
@@ -223,7 +223,7 @@ http://127.0.0.1:5173/roles.html
 
 **Important:** Keep both frontend and backend servers running. Ensure the frontend API configuration points to the backend on port `8003`.
 
-These instructions assume the backend entry point is `app.main:app` and all required model files and dependencies are available.
+These instructions assume the backend entry point is `main:app` and all required model files and dependencies are available.
 
 ## 9. Demo Workflow
 
