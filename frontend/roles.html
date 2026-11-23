@@ -1,0 +1,1034 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DENGU HUNTER | Secure Access</title>
+<style>
+:root{
+  --bg:#09090d;
+  --sidebar:#101014;
+  --card:#141419;
+  --card2:#1b1524;
+  --border:#302a39;
+  --purple:#9555ef;
+  --purple-light:#c49aff;
+  --text:#f4f0fc;
+  --muted:#a69aaf;
+  --green:#4ce2ae;
+  font-family:"Segoe UI",Arial,sans-serif;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;background:var(--bg);color:var(--text);font-size:14px}
+button,input,select,textarea{font:inherit}
+button,.link{
+  cursor:pointer;border:1px solid #4b3568;border-radius:7px;
+  padding:11px 16px;background:#251936;color:#e8d7ff;
+  font-weight:700;text-decoration:none;display:inline-block;
+}
+button:hover,.link:hover{filter:brightness(1.15)}
+button:disabled{opacity:.55;cursor:wait}
+.primary,.login-submit{
+  background:linear-gradient(110deg,#7841d5,#995af5);
+  border-color:#9555ef;color:white;
+}
+.secondary{background:#1a1920;border-color:#36303f;color:#eee}
+.muted{color:var(--muted)}
+.eyebrow{
+  color:var(--purple-light);font-size:10px;
+  letter-spacing:1.8px;font-weight:900;text-transform:uppercase;
+}
+label{
+  display:block;font-size:12px;font-weight:700;
+  color:#cfc5d9;margin:16px 0 8px;
+}
+input:not([type=checkbox]),select,textarea{
+  width:100%;background:#101016;color:#fff;
+  border:1px solid #3b3244;border-radius:8px;
+  padding:12px;outline:none;
+}
+input:focus,select:focus,textarea:focus{
+  border-color:var(--purple);box-shadow:0 0 0 3px #9555ef20;
+}
+input::placeholder,textarea::placeholder{color:#81778b}
+input[type=checkbox]{width:auto;margin-right:8px}
+textarea{min-height:85px;resize:vertical}
+.actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:16px 0}
+.card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:11px;padding:22px;margin:16px 0;
+}
+.card h2{margin:8px 0 18px;font-size:18px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.case{
+  padding:17px;margin:12px 0;background:#101016;
+  border:1px solid #383040;border-radius:9px;overflow-wrap:anywhere;
+}
+.case b{color:var(--purple-light)}
+.tag{
+  display:inline-block;margin-left:8px;padding:5px 9px;
+  background:#302044;color:#d4b5ff;border-radius:5px;
+  font-size:11px;font-weight:800;
+}
+#status{
+  padding:13px 16px;margin:16px 0;background:#23172f;
+  border:1px solid #53336e;border-radius:8px;
+  color:#d6baff;white-space:pre-wrap;
+}
+#status.error{
+  background:#351923;border-color:#83384d;color:#ff9cab;
+}
+
+/* LOGIN */
+
+#loginBox{
+  min-height:100vh;display:flex;align-items:center;
+  justify-content:center;padding:28px;
+  background:
+    radial-gradient(circle at 12% 40%,#24133577,transparent 40%),
+    #09090d;
+}
+.login-shell{
+  width:100%;max-width:1320px;min-height:750px;
+  display:grid;grid-template-columns:1fr 1fr;
+  background:#111116;border:1px solid #342a40;
+  border-radius:20px;overflow:hidden;
+  box-shadow:0 30px 100px #0009;
+}
+.login-left{
+  padding:48px 54px;display:flex;flex-direction:column;
+  justify-content:space-between;gap:35px;
+  background:
+    radial-gradient(circle at 20% 50%,#39205080,transparent 60%),
+    linear-gradient(145deg,#191122,#0e0d14);
+}
+.login-logo{
+  display:flex;align-items:center;gap:12px;
+  font-size:21px;font-weight:900;
+}
+.login-logo b{color:var(--purple-light)}
+.logo-icon{
+  width:43px;height:43px;display:grid;place-items:center;
+  background:#2d1b42;border:1px solid #8e58d8;
+  border-radius:10px;color:#cba4ff;font-size:24px;
+}
+.login-intro h1{
+  font-size:clamp(38px,4vw,56px);line-height:1.12;
+  letter-spacing:-2px;margin:18px 0 22px;
+}
+.login-intro h1 span{color:#b684ff}
+.intro-text{
+  max-width:480px;color:#b1a4bb;line-height:1.8;
+  font-size:15px;margin-bottom:32px;
+}
+.feature{display:flex;gap:15px;align-items:flex-start;margin:22px 0}
+.feature-icon{
+  flex:0 0 46px;height:46px;display:grid;place-items:center;
+  background:#342044;border:1px solid #51346a;
+  border-radius:10px;color:#cba4ff;font-size:21px;
+}
+.feature strong{font-size:14px}
+.feature p{
+  margin:5px 0 0;color:#a89bb3;font-size:12px;line-height:1.6;
+}
+.login-footer{font-size:11px;color:#8a7e96}
+.login-right{
+  display:flex;align-items:center;justify-content:center;
+  padding:50px 45px;background:#111116;
+}
+.login-form-wrap{width:100%;max-width:420px}
+.login-tag{
+  color:#c69aff;font-size:10px;font-weight:900;
+  letter-spacing:1.5px;margin-bottom:25px;
+}
+.live-dot{
+  display:inline-block;width:8px;height:8px;
+  border-radius:50%;background:var(--green);
+  margin-right:8px;box-shadow:0 0 10px #4ce2ae66;
+}
+.login-form-wrap h2{
+  font-size:38px;letter-spacing:-1.3px;margin:0 0 9px;
+}
+.login-subtitle{color:#a49aaf;margin:0 0 34px}
+.input-wrap{
+  display:flex;align-items:center;gap:10px;
+  border:1px solid #3b3244;border-radius:9px;
+  background:#101016;padding:0 14px;
+}
+.input-wrap:focus-within{
+  border-color:var(--purple);box-shadow:0 0 0 3px #9555ef20;
+}
+.input-wrap span{color:#ad87df;font-size:19px}
+.input-wrap input{
+  border:none!important;box-shadow:none!important;
+  padding:15px 0!important;background:transparent!important;
+}
+.role-info{font-size:12px;color:#a89bb3;margin:24px 0}
+.role-info span{color:var(--green);margin-right:7px}
+.login-submit{
+  width:100%;padding:15px;display:flex;
+  align-items:center;justify-content:center;gap:15px;
+  font-size:14px;
+}
+.login-divider{
+  display:flex;align-items:center;gap:12px;
+  color:#877b94;font-size:10px;letter-spacing:1px;
+  margin:35px 0 22px;text-align:center;
+}
+.login-divider:before,.login-divider:after{
+  content:"";flex:1;height:1px;background:#39303f;
+}
+.role-preview{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:9px;
+}
+.role-preview div{
+  background:#19161f;border:1px solid #38303f;
+  border-radius:8px;padding:13px 5px;text-align:center;
+  color:#cdb9df;font-size:12px;font-weight:750;
+}
+.login-security{
+  color:#877b94;text-align:center;font-size:11px;margin-top:28px;
+}
+#loginError{
+  margin-top:15px;padding:12px;background:#351923;
+  border:1px solid #83384d;color:#ff9cab;
+  border-radius:8px;font-size:12px;
+}
+
+/* DASHBOARD */
+
+#portal{
+  min-height:100vh;display:grid;
+  grid-template-columns:220px minmax(0,1fr);
+}
+.sidebar{
+  min-height:100vh;background:#101014;
+  border-right:1px solid #29252e;
+  padding:24px 13px;display:flex;flex-direction:column;
+}
+.side-brand{
+  display:flex;align-items:center;gap:10px;
+  font-weight:900;font-size:14px;margin-bottom:35px;
+}
+.side-brand b{color:var(--purple-light)}
+.side-brand small{
+  display:block;color:#877b94;font-size:9px;
+  font-weight:500;margin-top:4px;
+}
+.side-label{
+  color:#83768f;font-size:9px;letter-spacing:2px;
+  font-weight:900;margin:0 10px 14px;
+}
+.nav-item{
+  display:block;text-decoration:none;color:#c1b4ca;
+  padding:13px;border-radius:7px;font-size:12px;margin:3px 0;
+}
+.nav-item.active{
+  background:#302044;border:1px solid #624184;color:#dcbfff;
+}
+.nav-item:hover{background:#241a30}
+.side-bottom{
+  margin-top:auto;border:1px solid #302a39;
+  border-radius:8px;padding:13px;font-size:11px;color:#a99bb3;
+}
+.side-bottom b{color:var(--green)}
+.main-area{min-width:0;padding:28px 30px}
+.topbar{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:15px;flex-wrap:wrap;padding-bottom:20px;
+  border-bottom:1px solid #302a39;
+}
+.topbar h1{font-size:26px;margin:8px 0 5px}
+.topbar p{color:#a99bb3;font-size:12px;margin:0}
+.topbar-right{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.identity{
+  background:#24192f;border:1px solid #4d3562;
+  border-radius:7px;padding:9px 12px;color:#dcbfff;font-size:12px;
+}
+.hero-panel{
+  margin-top:18px;padding:23px;border-radius:11px;
+  border:1px solid #53376b;
+  background:linear-gradient(110deg,#26182f,#151319 80%);
+}
+.hero-panel h2{margin:10px 0;font-size:21px}
+.hero-panel p{color:#a99bb3;font-size:13px}
+#content{margin-top:16px}
+.mini-stats{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:14px;margin:16px 0;
+}
+.stat{
+  padding:20px;background:#141419;
+  border:1px solid #302a39;border-radius:10px;
+}
+.stat small{color:#9d90a7;font-size:11px}
+.stat strong{
+  display:block;font-size:24px;margin-top:10px;color:#fff;
+}
+@media(max-width:900px){
+  .login-shell{grid-template-columns:1fr}
+  .login-left{min-height:560px}
+  #portal{grid-template-columns:1fr}
+  .sidebar{min-height:auto}
+  .side-bottom{display:none}
+}
+@media(max-width:650px){
+  #loginBox{padding:10px}
+  .login-left{padding:30px}
+  .login-right{padding:40px 25px}
+  .login-intro h1{font-size:36px}
+  .grid,.mini-stats{grid-template-columns:1fr}
+  .main-area{padding:16px}
+}
+</style>
+</head>
+
+<body>
+
+<!-- LOGIN PAGE -->
+
+<section id="loginBox">
+<div class="login-shell">
+
+  <div class="login-left">
+
+    <div class="login-logo">
+      <span class="logo-icon">◇</span>
+      <span>DENGU <b>HUNTER</b></span>
+    </div>
+
+    <div class="login-intro">
+      <div class="eyebrow">
+        AI-POWERED COMMUNITY PROTECTION
+      </div>
+
+      <h1>
+        Smarter Detection.<br>
+        <span>Safer Communities.</span>
+      </h1>
+
+      <p class="intro-text">
+        Transforming dengue prevention with intelligent
+        object detection, location-aware reporting and
+        coordinated field response.
+      </p>
+
+      <div class="feature">
+        <div class="feature-icon">◎</div>
+        <div>
+          <strong>AI-Powered Detection</strong>
+          <p>Identify potential breeding-site objects using YOLO.</p>
+        </div>
+      </div>
+
+      <div class="feature">
+        <div class="feature-icon">⌖</div>
+        <div>
+          <strong>GPS Surveillance</strong>
+          <p>Explore reported inspection locations on interactive maps.</p>
+        </div>
+      </div>
+
+      <div class="feature">
+        <div class="feature-icon">▣</div>
+        <div>
+          <strong>Coordinated Field Response</strong>
+          <p>Connect citizens, administrators and field workers.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="login-footer">
+      DENGU HUNTER · AI HACKATHON PROTOTYPE
+    </div>
+
+  </div>
+
+  <div class="login-right">
+    <div class="login-form-wrap">
+
+      <div class="login-tag">
+        <span class="live-dot"></span>
+        SECURE SURVEILLANCE PLATFORM
+      </div>
+
+      <h2>Welcome Back</h2>
+      <p class="login-subtitle">
+        Sign in to your account to continue.
+      </p>
+
+      <form id="loginForm">
+
+        <label for="username">Username</label>
+        <div class="input-wrap">
+          <span>♙</span>
+          <input
+            id="username"
+            type="text"
+            autocomplete="username"
+            placeholder="Enter your username"
+            required>
+        </div>
+
+        <label for="password">Password</label>
+        <div class="input-wrap">
+          <span>♧</span>
+          <input
+            id="password"
+            type="password"
+            autocomplete="current-password"
+            placeholder="Enter your password"
+            required>
+        </div>
+
+        <div class="role-info">
+          <span>●</span>
+          Secure access for Admin, Citizen & Field Worker
+        </div>
+
+        <button type="submit" class="login-submit">
+          Sign In to Dashboard →
+        </button>
+
+        <div id="loginError" hidden></div>
+
+      </form>
+
+      <div class="login-divider">
+        ONE PLATFORM · THREE ROLES
+      </div>
+
+      <div class="role-preview">
+        <div>♙ Citizen</div>
+        <div>▣ Admin</div>
+        <div>⚒ Worker</div>
+      </div>
+
+      <p class="login-security">
+        🔒 Credentials are verified by the local backend.
+      </p>
+
+    </div>
+  </div>
+
+</div>
+</section>
+
+<!-- ROLE DASHBOARD -->
+
+<div id="portal" hidden>
+
+  <aside class="sidebar">
+
+    <div class="side-brand">
+      <span class="logo-icon">◇</span>
+      <div>
+        DENGU <b>HUNTER</b>
+        <small>Smart Dengue Prevention</small>
+      </div>
+    </div>
+
+    <div class="side-label">WORKSPACE</div>
+
+    <a href="#" class="nav-item active" id="navDashboard">
+      ▣ &nbsp; Dashboard
+    </a>
+
+    <a href="#" class="nav-item" id="navReports" hidden>
+      ◎ &nbsp; My Reports
+    </a>
+
+    <a href="#" class="nav-item" id="navTasks" hidden>
+      ⚒ &nbsp; Assigned Tasks
+    </a>
+
+    <a href="index.html" class="nav-item" id="navAdmin" hidden>
+      ◈ &nbsp; Full Command Center
+    </a>
+
+    <div class="side-bottom">
+      <b>●</b> Local API Connection
+      <div style="margin-top:5px">DENGU HUNTER Backend</div>
+    </div>
+
+  </aside>
+
+  <div class="main-area">
+
+    <header class="topbar">
+      <div>
+        <div class="eyebrow">
+          COMMAND CENTER / ROLE WORKSPACE
+        </div>
+        <h1 id="heading">Dashboard</h1>
+        <p id="description"></p>
+      </div>
+
+      <div class="topbar-right">
+        <span class="identity" id="identity"></span>
+        <button id="logout" class="secondary">Log out</button>
+      </div>
+    </header>
+
+    <div id="status" role="status"></div>
+
+    <section class="hero-panel">
+      <div class="eyebrow">LIVE WORKSPACE</div>
+      <h2 id="heroTitle">Role Dashboard</h2>
+      <p id="heroText">Manage your dengue surveillance workflow.</p>
+
+      <div class="actions">
+        <button id="refresh">↻ Refresh Data</button>
+
+        <a
+          href="index.html"
+          class="link secondary"
+          id="legacyLink"
+          hidden>
+          Open Full Command Center
+        </a>
+      </div>
+    </section>
+
+    <div id="content"></div>
+
+  </div>
+</div>
+
+<script>
+"use strict";
+
+const BASE = "http://127.0.0.1:8003/api/v1";
+
+const state = {
+  token: "",
+  role: "",
+  username: ""
+};
+
+const $ = id => document.getElementById(id);
+
+function esc(value) {
+  return String(value ?? "—").replace(
+    /[&<>"']/g,
+    c => ({
+      "&":"&amp;",
+      "<":"&lt;",
+      ">":"&gt;",
+      '"':"&quot;",
+      "'":"&#39;"
+    }[c])
+  );
+}
+
+function message(text,error=false) {
+  $("status").textContent=text;
+  $("status").classList.toggle("error",error);
+}
+
+async function request(path,{method="GET",body=null}={}) {
+  const headers={};
+
+  if(state.token) {
+    headers.Authorization="Bearer "+state.token;
+  }
+
+  if(body && !(body instanceof FormData)) {
+    headers["Content-Type"]="application/json";
+  }
+
+  let response;
+
+  try {
+    response=await fetch(BASE+path,{
+      method,
+      headers,
+      body:body instanceof FormData
+        ? body
+        : body ? JSON.stringify(body) : undefined,
+      cache:"no-store"
+    });
+  } catch {
+    throw Error("Cannot connect to backend on port 8003.");
+  }
+
+  const raw=await response.text();
+  let data;
+
+  try { data=JSON.parse(raw); }
+  catch { data={detail:raw}; }
+
+  if(!response.ok) {
+    throw Error(
+      "HTTP "+response.status+": "+
+      (
+        typeof data.detail==="string"
+          ? data.detail
+          : JSON.stringify(data.detail||data)
+      )
+    );
+  }
+
+  return data;
+}
+
+function caseCard(c,mode) {
+  const id=esc(c.case_id);
+  let action="";
+
+  if(mode==="worker") {
+    if(c.stage==="TASK_ASSIGNED") {
+      action=`
+        <form class="startForm" data-id="${id}">
+          <button type="submit" class="primary">
+            Start Assigned Task
+          </button>
+        </form>
+      `;
+    }
+
+    if(c.stage==="WORK_IN_PROGRESS") {
+      action=`
+        <form class="afterForm" data-id="${id}">
+          <label>After-action Photo</label>
+          <input type="file" name="image"
+                 accept="image/png,image/jpeg" required>
+
+          <label>Work Notes</label>
+          <textarea name="notes"
+            placeholder="Describe completed work"></textarea>
+
+          <label>
+            <input type="checkbox"
+              name="same_site_attested" required>
+            I confirm this is the same site
+          </label>
+
+          <div class="actions">
+            <button type="submit" class="primary">
+              Submit After Evidence
+            </button>
+          </div>
+        </form>
+      `;
+    }
+  }
+
+  return `
+    <div class="case">
+      <b>${id}</b>
+      <span class="tag">${esc(c.stage)}</span>
+      <p>Priority: ${esc(c.priority?.level||"Not rated")}</p>
+      <p>Assigned: ${esc(c.assigned_worker||"Not assigned")}</p>
+      ${action}
+    </div>
+  `;
+}
+
+async function refresh() {
+  if(state.role==="citizen") {
+    const data=await request("/auth/citizen/reports");
+
+    $("content").innerHTML=`
+      <div class="mini-stats">
+        <div class="stat">
+          <small>My Submitted Reports</small>
+          <strong>${data.length}</strong>
+        </div>
+        <div class="stat">
+          <small>Account Role</small>
+          <strong style="font-size:20px">Citizen</strong>
+        </div>
+        <div class="stat">
+          <small>AI Inspection</small>
+          <strong style="font-size:20px;color:#c49aff">
+            Available
+          </strong>
+        </div>
+      </div>
+
+      <div class="grid">
+        <section class="card">
+          <div class="eyebrow">COMMUNITY SURVEILLANCE</div>
+          <h2>New Breeding-Site Report</h2>
+
+          <form id="reportForm">
+            <label>Site Photograph</label>
+            <input type="file" name="image"
+                   accept="image/png,image/jpeg" required>
+
+            <label>Source</label>
+            <select name="source">
+              <option>Ground photo</option>
+              <option>Aerial photo (user-provided)</option>
+              <option>Drone simulation frame</option>
+            </select>
+
+            <label>Evidence Type</label>
+            <select name="evidence_mode">
+              <option value="DEMO_CASE_STAGED">
+                Staged Demo
+              </option>
+              <option value="FIELD_REPORT_UNVERIFIED">
+                Unverified Field Report
+              </option>
+            </select>
+
+            <label>Latitude (optional)</label>
+            <input type="number" name="latitude"
+                   step="any" min="-90" max="90">
+
+            <label>Longitude (optional)</label>
+            <input type="number" name="longitude"
+                   step="any" min="-180" max="180">
+
+            <label>Rain Context</label>
+            <select name="rain_context">
+              <option>Unknown</option>
+              <option>Dry</option>
+              <option>Recent rain</option>
+              <option>Heavy rain</option>
+            </select>
+
+            <label>Previous Site Reports</label>
+            <input type="number" name="previous_reports"
+                   value="0" min="0" step="1">
+
+            <label>Notes</label>
+            <textarea name="notes"
+              placeholder="Describe the site"></textarea>
+
+            <div class="actions">
+              <button type="submit" class="primary">
+                Submit for AI Inspection →
+              </button>
+            </div>
+          </form>
+        </section>
+
+        <section class="card">
+          <div class="eyebrow">CASE TRACKING</div>
+          <h2>My Reports (${data.length})</h2>
+          ${
+            data.length
+              ? data.map(c=>caseCard(c,"citizen")).join("")
+              : '<p class="muted">No reports submitted yet.</p>'
+          }
+        </section>
+      </div>
+    `;
+
+  } else if(state.role==="worker") {
+    const data=await request("/auth/worker/tasks");
+
+    $("content").innerHTML=`
+      <div class="mini-stats">
+        <div class="stat">
+          <small>Assigned Tasks</small>
+          <strong>${data.length}</strong>
+        </div>
+        <div class="stat">
+          <small>Account Role</small>
+          <strong style="font-size:20px">Field Worker</strong>
+        </div>
+        <div class="stat">
+          <small>Field Operations</small>
+          <strong style="font-size:20px;color:#c49aff">
+            Workspace
+          </strong>
+        </div>
+      </div>
+
+      <section class="card">
+        <div class="eyebrow">FIELD OPERATIONS</div>
+        <h2>My Assigned Tasks (${data.length})</h2>
+        ${
+          data.length
+            ? data.map(c=>caseCard(c,"worker")).join("")
+            : '<p class="muted">No tasks assigned yet. Admin must assign using your username.</p>'
+        }
+      </section>
+    `;
+
+  } else if(state.role==="admin") {
+    $("content").innerHTML=`
+      <div class="mini-stats">
+        <div class="stat">
+          <small>Account Role</small>
+          <strong style="font-size:20px">Admin</strong>
+        </div>
+        <div class="stat">
+          <small>Role Session</small>
+          <strong style="font-size:20px;color:#4ce2ae">
+            Active
+          </strong>
+        </div>
+        <div class="stat">
+          <small>Command Center</small>
+          <strong style="font-size:20px">Available</strong>
+        </div>
+      </div>
+
+      <section class="card">
+        <div class="eyebrow">ADMINISTRATOR ACCESS</div>
+        <h2>DENGU HUNTER Command Center</h2>
+        <p class="muted">
+          Use the existing Admin Dashboard for AI reports,
+          GPS surveillance, case management and field response.
+        </p>
+        <p class="muted">
+          The existing Dashboard uses separate legacy API
+          authentication. Full session integration is not
+          yet verified.
+        </p>
+        <div class="actions">
+          <a href="index.html" class="link primary">
+            Open Existing Dashboard →
+          </a>
+        </div>
+      </section>
+    `;
+  }
+
+  message(state.role.toUpperCase()+" workspace ready.");
+}
+
+/* LOGIN */
+
+$("loginForm").addEventListener("submit",async event=>{
+  event.preventDefault();
+
+  const button=event.target.querySelector("button");
+  const errorBox=$("loginError");
+
+  button.disabled=true;
+  errorBox.hidden=true;
+
+  try {
+    const data=await request("/auth/login",{
+      method:"POST",
+      body:{
+        username:$("username").value.trim(),
+        password:$("password").value
+      }
+    });
+
+    if(!["admin","citizen","worker"].includes(data.role)) {
+      throw Error("Unexpected role");
+    }
+
+    state.token=data.access_token;
+    state.role=data.role;
+    state.username=data.username;
+
+    if(data.role==="admin") {
+      sessionStorage.setItem(
+        "dengu_admin_session",
+        JSON.stringify({
+          token:data.access_token,
+          username:data.username
+        })
+      );
+    }
+
+    $("password").value="";
+
+    $("identity").textContent=
+      data.username+" · "+data.role;
+
+    $("heading").textContent=
+      data.role==="admin"
+        ? "Admin Dashboard"
+        : data.role==="citizen"
+          ? "Citizen Dashboard"
+          : "Field Worker Dashboard";
+
+    $("description").textContent=
+      data.role==="citizen"
+        ? "Community reporting and AI-assisted inspection."
+        : data.role==="worker"
+          ? "Assigned tasks and field response management."
+          : "Inspection command and case management.";
+
+    $("heroTitle").textContent=
+      data.role==="citizen"
+        ? "Community Reporting Center"
+        : data.role==="worker"
+          ? "Field Operations Center"
+          : "Administration Command Center";
+
+    $("heroText").textContent=
+      data.role==="citizen"
+        ? "Submit site evidence and track your reports."
+        : data.role==="worker"
+          ? "Review assigned tasks and submit field evidence."
+          : "Manage the inspection and response workflow.";
+
+    $("navReports").hidden=data.role!=="citizen";
+    $("navTasks").hidden=data.role!=="worker";
+    $("navAdmin").hidden=data.role!=="admin";
+    $("legacyLink").hidden=data.role!=="admin";
+
+    $("loginBox").hidden=true;
+    $("portal").hidden=false;
+
+    await refresh();
+
+  } catch(error) {
+    if($("portal").hidden) {
+      errorBox.textContent=error.message;
+      errorBox.hidden=false;
+    } else {
+      message(error.message,true);
+    }
+  } finally {
+    button.disabled=false;
+  }
+});
+
+/* LOGOUT */
+
+$("logout").addEventListener("click",async()=>{
+  sessionStorage.removeItem("dengu_admin_session");
+
+  try {
+    await request("/auth/logout",{method:"POST"});
+  } catch {}
+
+  state.token="";
+  state.role="";
+  state.username="";
+
+  $("portal").hidden=true;
+  $("loginBox").hidden=false;
+  $("identity").textContent="";
+  $("content").innerHTML="";
+  $("password").value="";
+  $("loginError").hidden=true;
+});
+
+/* REFRESH */
+
+$("refresh").addEventListener("click",async()=>{
+  try { await refresh(); }
+  catch(error) { message(error.message,true); }
+});
+
+$("navDashboard").addEventListener("click",event=>{
+  event.preventDefault();
+  window.scrollTo({top:0,behavior:"smooth"});
+});
+
+$("navReports").addEventListener("click",event=>{
+  event.preventDefault();
+  $("content").scrollIntoView({behavior:"smooth"});
+});
+
+$("navTasks").addEventListener("click",event=>{
+  event.preventDefault();
+  $("content").scrollIntoView({behavior:"smooth"});
+});
+
+/* CITIZEN AND WORKER ACTIONS */
+
+$("content").addEventListener("submit",async event=>{
+  const form=event.target;
+
+  if(
+    form.id!=="reportForm" &&
+    !form.classList.contains("startForm") &&
+    !form.classList.contains("afterForm")
+  ) return;
+
+  event.preventDefault();
+
+  const button=form.querySelector('button[type="submit"]');
+  button.disabled=true;
+
+  try {
+    if(form.id==="reportForm") {
+      const fd=new FormData(form);
+      const image=fd.get("image");
+
+      if(!image || !image.size) {
+        throw Error("Select a photograph.");
+      }
+
+      if(image.size>12*1024*1024) {
+        throw Error("Image must be under 12 MB.");
+      }
+
+      if(
+        Boolean(fd.get("latitude")) !==
+        Boolean(fd.get("longitude"))
+      ) {
+        throw Error("Provide both GPS coordinates or neither.");
+      }
+
+      if(!fd.get("latitude")) fd.delete("latitude");
+      if(!fd.get("longitude")) fd.delete("longitude");
+
+      const result=await request("/auth/citizen/reports",{
+        method:"POST",
+        body:fd
+      });
+
+      await refresh();
+      message(
+        "Report submitted: "+
+        result.case_id+" · "+result.stage
+      );
+
+    } else if(form.classList.contains("startForm")) {
+      const id=form.dataset.id;
+
+      await request(
+        "/cases/"+encodeURIComponent(id)+"/start",
+        {
+          method:"POST",
+          body:{worker:state.username}
+        }
+      );
+
+      await refresh();
+      message("Task started: "+id);
+
+    } else if(form.classList.contains("afterForm")) {
+      const id=form.dataset.id;
+      const fd=new FormData(form);
+      const image=fd.get("image");
+
+      if(!image || !image.size) {
+        throw Error("Select an after-action photo.");
+      }
+
+      if(image.size>12*1024*1024) {
+        throw Error("Image must be under 12 MB.");
+      }
+
+      fd.set("worker",state.username);
+      fd.set("same_site_attested","true");
+
+      await request(
+        "/cases/"+encodeURIComponent(id)+"/after",
+        {
+          method:"POST",
+          body:fd
+        }
+      );
+
+      await refresh();
+      message("After evidence submitted: "+id);
+    }
+
+  } catch(error) {
+    message(error.message,true);
+  } finally {
+    button.disabled=false;
+  }
+});
+</script>
+</body>
+</html>
