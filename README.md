@@ -430,9 +430,37 @@ DENGU HUNTER aims to:
 - Strengthen accountability through human-reviewed case closure
 
 The prototype does not establish that dengue infections or outbreaks have been reduced. Such impact requires real-world field evaluation and public-health data.
-
 ## 16. Limitations
 
-- Object detection does not confirm Aedes larvae or dengue infection.
-- AI predictions may contain false positives and false negatives.
-- Image quality and environmental
+DENGU HUNTER is an AI-assisted prototype for identifying potential mosquito breeding-site indicators and prioritizing human inspections.
+
+### Current Limitations
+
+1. **Detection Accuracy:** YOLO predictions may contain false positives and false negatives.
+
+2. **Image Quality:** Poor lighting, blurry images, occlusion, and camera angles may affect detection accuracy.
+
+3. **Species Identification:** The system cannot independently confirm Aedes mosquito species or dengue infection.
+
+4. **Risk Assessment:** Inspection priority is calculated using explainable rules, not a trained dengue outbreak prediction model.
+
+5. **Field Verification:** Real-world inspection and cleanup effectiveness have not yet been independently validated.
+
+6. **Drone Integration:** Drone-route planning is a simulation. Autonomous drone flights and real aerial image capture are not claimed.
+
+7. **Before/After Verification:** Image comparisons provide supporting evidence but cannot independently prove successful cleanup.
+
+8. **Model Evaluation:** Final performance metrics require verification using the saved evaluation results and independent test data.
+
+9. **Deployment:** Complete end-to-end testing and production-level deployment validation remain necessary.
+
+### Future Improvements
+
+- Conduct real-world field testing.
+- Evaluate false positives and false negatives.
+- Improve detection robustness across different environments.
+- Expand and validate the dataset.
+- Strengthen role-based authentication and permissions.
+- Integrate verified field inspection and cleanup records.
+
+The system is intended to support public-health inspection decisions, not replace professional assessment or field verification.
