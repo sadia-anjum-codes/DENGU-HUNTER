@@ -129,27 +129,36 @@ The platform supports ground-level photographs and aerial imagery, including cle
 The repository is organized around the following components:
 
 ```text
+
 DENGU-HUNTER/
+├── backend/
+│   ├── main.py
+│   ├── engine.py
+│   ├── evaluate_correct.py
+│   ├── evaluate_fixed.py
+│   ├── evaluate_model.py
+│   ├── requirements.txt
+│   ├── setup_local.py
+│   └── README.md
 ├── frontend/
 │   ├── index.html
 │   ├── roles.html
 │   ├── app.js
 │   ├── styles.css
 │   └── README.md
-│
-├── backend/                  # Upload/verify
-│   ├── app/
-│   ├── data/
-│   ├── models/
-│   ├── requirements.txt
-│   ├── setup_local.py
-│   ├── .env.example
-│   └── README.md
-│
 ├── models/
+│   ├── best.pt.zip
+│   └── data/
+│       └── README.md
 ├── results/
-├── docs/                     # Verify actual folder name
+│   ├── association_results.csv
+│   ├── closed_loop_summary.json
+│   ├── image_inspection_summary.csv
+│   └── intervention_register.csv
+├── docs/
+│   └── README.md
 └── README.md
+  
 ```
 
 This structure represents the intended organization. Verify the actual GitHub repository paths after the backend upload.
