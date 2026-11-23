@@ -1,0 +1,12 @@
+DENGUE HUNTER — COMPLETE NON-CODE GITHUB PACKAGE
+
+This package contains README/documentation and a copy of the original proposal. It does not replace application source code, model weights, notebooks, datasets or result files.
+
+UPLOAD:
+1. Review the README in this package against the current repository README. Merge/update rather than blindly overwrite useful existing content.
+2. Upload the docs/ folder into the repository root.
+3. Update README.md in the repository after reviewing it.
+4. Keep existing models/, results/, notebooks, CSV/JSON outputs and source-code folders unchanged.
+5. Fill all [bracketed] placeholders with verified information before final submission.
+6. Do not upload secrets, API keys, passwords or private data.
+7. This package intentionally does not invent a dataset, YOLO version, API route, dependency version, evaluation score or license.
