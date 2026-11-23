@@ -377,24 +377,47 @@ The system follows a human-reviewed workflow:
 | **Sadia Anjum** | AI/ML model development, dataset preparation, model training and testing |
 | **Marjahan Begum Urmi** | Frontend development, backend development and integration |
 | **Sadia Afreen Jinia** | GitHub repository management, documentation, project coordination and submission preparation |
+## 14. Testing
 
-## 14. Testing and Verification
+### 14.1 Software and Workflow Testing
 
-The team has reported development and testing activities involving:
+The project includes software-level testing for:
 
-- Image detection
-- Risk prioritization
-- GPS/map visualization
-- Role-based interfaces
-- Administrator review
-- Worker assignment
-- Before/after evidence submission
-- Case status updates
-- Model evaluation
-- Role and permission checks
+- Image input validation
+- GPS coordinate validation
+- Rule-based inspection priority
+- Citizen report submission
+- Human review and approval workflow
+- Worker task assignment
+- Before/after evidence handling
+- Case audit and data integrity checks
 
-**Verification status:** These activities are team-reported. The final testing report should include reproducible test cases, actual results, screenshots and any known failures. Only independently reproduced or documented successful tests should be marked as passed.
+### 14.2 AI Model Testing
 
+The project provides an evaluation workflow for the trained YOLO model using:
+
+- Precision
+- Recall
+- mAP@0.5
+- mAP@0.5:0.95
+
+Actual evaluation results must be confirmed from the saved model outputs.
+
+### 14.3 Testing Limitations
+
+Static and synthetic software tests do not establish successful live YOLO inference or field validation.
+
+The following require additional verification:
+
+- Real-image inference using the trained F2 checkpoint
+- Complete end-to-end execution in Google Colab
+- False-positive and false-negative evaluation
+- Real-world field inspection
+- Cleanup effectiveness verification
+
+### 14.4 Testing Status
+
+DENGU HUNTER includes testing and evaluation code, but complete live demonstration readiness and real-world effectiveness have not yet been independently established.
 ## 15. Expected Impact
 
 DENGU HUNTER aims to:
