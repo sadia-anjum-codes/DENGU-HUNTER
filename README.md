@@ -248,7 +248,7 @@ Demo evidence should distinguish real detections and locations from simulated ex
 
 Watch the complete DENGU HUNTER project demonstration:
 
-**[Watch Demo Video](PASTE_YOUTUBE_LINK_HERE)**
+**[Watch Demo Video](https://drive.google.com/file/d/1Ar74C2fg-yJ8wtOArBrOaXXoy73IbuTo/view?usp=sharing)**
 
 The video demonstrates the AI detection and human-reviewed inspection workflow.
 
