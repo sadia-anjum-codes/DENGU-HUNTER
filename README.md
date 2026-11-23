@@ -243,6 +243,15 @@ The demonstration is designed to show the complete application workflow.
 
 Demo evidence should distinguish real detections and locations from simulated examples.
 
+
+### Demo Video
+
+Watch the complete DENGU HUNTER project demonstration:
+
+**[Watch Demo Video](PASTE_YOUTUBE_LINK_HERE)**
+
+The video demonstrates the AI detection and human-reviewed inspection workflow.
+
 ## 10. Model Evaluation
 
 The object-detection model should be evaluated using a separate validation or test dataset.
@@ -273,6 +282,14 @@ Before final submission, document:
 - Preprocessing and augmentation
 - Dataset limitations
 - Any self-collected images
+
+### Dataset Download
+
+The breeding-site detection dataset is hosted on Google Drive due to its large file size (approximately 450 MB).
+
+**Download Dataset:** [breeding.zip](https://drive.google.com/file/d/1s5qB3dOgLuc-pBCooqBsVRjkW_82D2Nr/view?usp=sharing)
+
+The ZIP archive contains the dataset files used for the project. Dataset access is provided for research, evaluation, and reproducibility, subject to the dataset's applicable permissions and licensing.
 
 **TODO:** Add verified dataset information and attribution.
 ## 12. AI Tools and Disclosure
