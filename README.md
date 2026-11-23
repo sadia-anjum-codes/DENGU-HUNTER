@@ -275,23 +275,101 @@ Before final submission, document:
 - Any self-collected images
 
 **TODO:** Add verified dataset information and attribution.
-
 ## 12. AI Tools and Disclosure
 
-The project uses a YOLO-family computer-vision model for object detection.
+### 12.1 AI Model and Framework
 
-The final AI disclosure must identify:
+- **Primary AI Task:** Potential mosquito breeding-site object detection
+- **Model Architecture:** YOLOv8 Small (YOLOv8s), as specified in the original training code
+- **Framework:** Ultralytics YOLO
+- **Programming Language:** Python
+- **Training Environment:** Google Colab
+- **GPU:** CUDA GPU for training; T4 supported for inference
+- **CPU Support:** Available for inference
+- **Primary Trained Model:** F2 `best.pt`
+- **Optional Secondary Model:** F3 larvae close-up detection
+- **Backend:** FastAPI
+- **Interactive Demo:** Gradio
+- **Image Processing:** OpenCV, Pillow
+- **Mapping:** Folium
 
-- Exact model and checkpoint
-- Model training framework
-- Dataset sources
-- Third-party AI APIs, if used
-- AI coding assistants used during development
-- AI-generated assets, if any
-- Human contributions and verification
+### 12.2 Dataset Information
 
-**TODO:** Complete the AI disclosure using the team's actual development records.
+**Primary Dataset:** Breeding Place Detection
 
+The original training configuration specifies five object classes:
+
+1. Bottle
+2. Coconut-Exocarp
+3. Drain-Inlet
+4. Tire
+5. Vase
+
+**Annotation Format:** YOLO bounding-box annotations
+
+**Dataset Splits:** Training, Validation and Testing
+
+**Dataset Configuration:** `data.yaml`
+
+**Dataset Image Counts and Original Source:** Pending verification from dataset records.
+
+A separate larvae detection dataset is referenced for the optional F3 model.
+
+### 12.3 Model Training Configuration
+
+The archived F2 training code specifies:
+
+| Parameter | Configuration |
+|---|---|
+| Base Model | `yolov8s.pt` |
+| Epochs | 50 |
+| Image Size | 640 × 640 |
+| Batch Size | 16 |
+| Optimizer | AdamW |
+| Learning Rate | 0.001 |
+| Early Stopping Patience | 15 |
+| Random Seed | 42 |
+| Workers | 2 |
+| Deterministic Training | Enabled |
+
+**Training Output:** `DENGUE_HUNTER_RESULTS/DengueHunter_v1/weights/best.pt`
+
+These settings are taken from the preserved original training code. Final training execution details and checkpoint metadata should be cross-checked with the saved training artifacts.
+
+### 12.4 Model Evaluation
+
+The notebook includes independent test evaluation code using:
+
+- Precision
+- Recall
+- mAP@0.5
+- mAP@0.5:0.95
+
+Actual numerical results must be reported from saved evaluation outputs. No unverified performance scores are claimed.
+
+### 12.5 AI-Assisted Development
+
+The project uses Ultralytics YOLO for object detection and rule-based logic for explainable inspection prioritization.
+
+Any AI coding assistants, third-party AI APIs, or AI-generated assets used during development must be disclosed according to the team's actual development records.
+
+### 12.6 Human Contributions and Verification
+
+The project team is responsible for dataset preparation, model training, frontend and backend development, integration, testing, documentation, and verification.
+
+The system follows a human-reviewed workflow:
+
+**Citizen Submission → AI Detection → Risk Prioritization → Human Review → Worker Assignment → Before/After Evidence → Final Human Decision**
+
+### 12.7 Responsible AI and Limitations
+
+- AI object detection does not confirm Aedes mosquito larvae or dengue infection.
+- Risk scores represent rule-based inspection priorities, not predicted dengue incidence.
+- Drone-route functionality is simulated; autonomous drone flight is not claimed.
+- Before/after image analysis does not independently prove successful cleanup.
+- Real field verification and end-to-end live testing remain necessary.
+- AI findings support human decisions rather than replacing them.
+  
 ## 13. Team Members and Contributions
 
 | Team Member | Contribution |
